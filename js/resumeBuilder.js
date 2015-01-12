@@ -16,3 +16,21 @@ var formattedName=HTMLheaderName.replace("%data%", firstName);
 var formattedRole=HTMLheaderRole.replace("%data%", "Web Developer");
 $("#main").prepend(formattedRole).prepend(formattedName);
 var testArray=['test1','test2'];
+var skills=['PHP','Javascript','JQuery'];
+var bio={'name':'Ken E','contact_info':'Turkey','pic_url':'http://placehold.it/50x50','skills':skills};
+
+$("#main").append(bio.name);
+
+var work={};
+work['position']='engineer';
+work.employer='ibm';
+work['years']=10;
+work.city='NY';
+
+var education={};
+education.school='harvard';
+education['years']=5;
+education.city='Boston';
+
+$("#main").append(work["position"]).append("<br>"+bio.name);
+
