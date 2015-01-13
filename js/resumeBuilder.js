@@ -38,7 +38,7 @@ var work={
                 	"title":"Developer",
                   	"location":"San Francisco",
                   	"dates":"January 2012, December 2013",
-                  	"description":"developing tools"	
+                  	"description":"developing tools, talking people, eating pizza, buying items Start our full course experience! You’ll have access to a personal Coach for code reviews, project feedback, and pacing support. Earn your verified certificate of " 	
                   	},
                   {
                   	"employer":"Yahoo, Inc.",
@@ -70,7 +70,7 @@ var projects={
 };
 
 
-var bio={"name":"Ken E",
+var bio={"name":"ken Developer",
 		  "role":"Engineer",
 		  "welcomeMessage":"Welcome to my Profile!",		  
 		"contacts":{
@@ -80,9 +80,13 @@ var bio={"name":"Ken E",
 					"location":"Turkey"
 						},
 		"skills":[
+		          
 		          "PHP",
 		          "Ruby",
-		          "Javascript"
+		          "Javascript",
+		          "Image Processing",
+		          "HTML"
+		          
 		          ]
 		};
 
@@ -116,4 +120,71 @@ var education={
 			                "url":"http://www.coursera.com"}
 		 ]
    	};
+
+$("#main").prepend(HTMLheaderName.replace("%data%",bio.name));
+
+if (bio.skills.length) {
+	$("#header").append(HTMLskillsStart);
+	var formattedSkill=HTMLskills.replace("%data%",bio.skills[0]);
+	$("#skills").append(formattedSkill);
+	var formattedSkill=HTMLskills.replace("%data%",bio.skills[1]);
+	$("#skills").append(formattedSkill);
+	var formattedSkill=HTMLskills.replace("%data%",bio.skills[2]);
+	$("#skills").append(formattedSkill);
+	
+} else{
+	$("#header").append('<span style="'+'color:red">No Skills at all...</span>');
+};
+
+/*
+
+for(var i=0; i<9;i++){ 
+	console.log(i);
+	}
+*/
+
+
+function displayWork(){
+	for(var job in work["jobs"]){
+		$("#workExperience").append(HTMLworkStart);
+		console.log(job);
+		var formattedJob=HTMLworkEmployer.replace("%data%", work.jobs[job]["employer"])
+		+HTMLworkTitle.replace("%data%",work.jobs[job].title);
+		$(".work-entry:last").append(formattedJob);
+		var formattedDates=HTMLworkDates.replace("%data%", work.jobs[job].dates);
+		var formattedLocation=HTMLworkLocation.replace("%data%", work.jobs[job].location);
+		var formattedDescription=HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		$(".work-entry:last").append(formattedDates);
+		$(".work-entry:last").append(formattedLocation);
+		$(".work-entry:last").append(formattedDescription);
+	}
+}
+
+
+displayWork();
+$("#main").append(internationalizeButton);
+
+function inName(name){
+	var parts=name.trim().split(" ");
+	parts[0]=parts[0].slice(0,1).toUpperCase()+parts[0].slice(1).toLowerCase();
+	parts[1]=parts[1].toUpperCase();
+	return parts.join(" ");
+}
+
+projects.display=function(){
+	for(var project in projects.projects){
+		$("#projects").append(HTMLprojectStart);
+		var formattedTitle=HTMLprojectTitle.replace("%data%",projects.projects[project].title);
+		var formattedDate=HTMLprojectDates.replace("%data%",projects.projects[project].dates);
+		var formattedDescription=HTMLprojectDescription.replace("%data%",projects.projects[project].description);
+		var formattedImage=HTMLprojectImage.replace("%data%",projects.projects[project].image);
+		$(".project-entry:last").append(formattedTitle);
+		$(".project-entry:last").append(formattedDate);
+		$(".project-entry:last").append(formattedDescription);
+		$(".project-entry:last").append(formattedImage);
+	}
+		
+}
+
+projects.display();
 
